@@ -1,28 +1,48 @@
 import pygame
 from config import *
 from tela_inicial import *
+from tela_final import *
+from mapa_bolado import *
+from sprites import *
 
 class jogo:
     def __init__(self):
         pygame.init()
         self.game = True
-        self.tela = pygame.display.set_mode((1280, 720), 0, 0)
+        self.tela = pygame.display.set_mode((LARGURA, ALTURA), 0, 0)
+        self.grupo_professor = pygame.sprite.Group()
         pygame.display.set_caption('nome do jogo')
+        self.relogio = pygame.time.Clock()
 
     def eventos(self):
         tela_inicial = True
-        
+        jogando = False
+        tela_game_over = False
+        fim = game_over()
+        mapa = TiledMap((0,0), pygame.sprite.Group())
+        mapa.carregar_mapa('tiled/sem título.tmx')
         while self.game:
+
             if tela_inicial:
                 self.tela.fill((0, 0, 0))
-                x = inicio()
-                x.desenha(self.tela)
+                Inicio = inicio()
+                Inicio.desenha(self.tela)
+
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         self.game = False
                     if event.type == pygame.KEYDOWN:
-                        self.game = True
+                        if event.key == pygame.K_t:
+                            tela_inicial = False
+                            tela_game_over = True
 
+            elif tela_game_over:
+                fim.desenha(self.tela)
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        self.game = False
+
+            self.relogio.tick(FPS)
             pygame.display.update()
 
         return True
