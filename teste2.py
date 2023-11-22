@@ -63,7 +63,7 @@ for i in range(2):
 
 clock = pygame.time.Clock()
 
-# Loop principal
+# Loop principal do jogo
 while True:
     clock.tick(FPS)
     for event in pygame.event.get():
