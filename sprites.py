@@ -28,7 +28,7 @@ class jogador(pygame.sprite.Sprite):
             self.speedy = 0
 
 class obstaculo(pygame.sprite.Sprite):
-    def __init__(self, position, top_inferior = None):
+    def __init__(self, position, top_obs_inferior = None):
         pygame.sprite.Sprite.__init__(self)
 
         if position == 'inferior':
@@ -38,16 +38,10 @@ class obstaculo(pygame.sprite.Sprite):
         else:
             self.image = pygame.image.load('imagem/obstaculo.png').convert()
             self.rect = self.image.get_rect()
-            self.rect.bottom = top_inferior - 50 
+            self.rect.bottom = top_obs_inferior - 50 
 
         self.rect.centerx = LARGURA
         self.speedx = 1
-    
+
     def update(self):
         self.rect.x -= self.speedx
-
-        # Mantem dentro da tela
-        if self.rect.right > LARGURA:
-            self.rect.right = LARGURA
-        if self.rect.left < 0:
-            self.rect.left = 0
