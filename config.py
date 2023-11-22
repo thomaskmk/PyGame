@@ -18,7 +18,7 @@ GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)
 
-# Define os fundos
+# Define o fundo
 BACKGROUND_DAY = pygame.image.load('assets/background-day.png')
 
 # Velocidade e gravidade
