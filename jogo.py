@@ -1,7 +1,6 @@
 import pygame
 from config import *
-from tela_inicial import *
-from tela_final import *
+from telas import *
 from sprites import *
 
 class jogo:
