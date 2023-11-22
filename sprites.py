@@ -46,4 +46,8 @@ class obstaculo(pygame.sprite.Sprite):
     def update(self):
         self.rect.x -= self.speedx
 
-        
+        # Mantem dentro da tela
+        if self.rect.right > LARGURA:
+            self.rect.right = LARGURA
+        if self.rect.left < 0:
+            self.rect.left = 0

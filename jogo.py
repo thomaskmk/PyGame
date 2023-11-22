@@ -2,6 +2,7 @@ import pygame
 from config import *
 from telas import *
 from sprites import *
+from pygame.locals import *
 
 class jogo:
     def __init__(self):
