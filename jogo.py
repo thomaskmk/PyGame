@@ -2,7 +2,6 @@ import pygame
 from config import *
 from tela_inicial import *
 from tela_final import *
-from mapa_bolado import *
 from sprites import *
 from pygame.locals import *
 
