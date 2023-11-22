@@ -1,67 +1,41 @@
 import pygame
 from config import *
 from sprites import *
-import random
 
-# Sprites
-class jogador(pygame.sprite.Sprite):
-    def __init__(self):
-        pygame.sprite.Sprite.__init__(self)
-
-        self.image = pygame.image.load('imagem/teste.jpg').convert()
-        self.image = pygame.transform.scale(self.image, (25,25))
-        self.rect = self.image.get_rect()
-        self.rect.centerx = LARGURA - 0.8*LARGURA
-        self.rect.bottom = 10
-        self.speedy = 0
-        self.accely = -0.5
-    
-    def update(self):
-        self.speedy += self.accely
-        self.rect.y -= self.speedy
-
-        if self.rect.y <= 0:
-            self.rect.y = 0
-            self.speedy = 0
-        
-        if self.rect.y + 25 >= ALTURA:
-            self.rect.y = ALTURA - 25
-            self.speedy = 0
-
-# Jogo
+# Iniciando dados
 pygame.init()
 window = pygame.display.set_mode((LARGURA, ALTURA))
 pygame.display.set_caption('joguinho')
 window.fill(BLACK)
-
+clock = pygame.time.Clock()
 game = True
 
-clock = pygame.time.Clock()
-
+# Grupos de sprites
 all_sprites = pygame.sprite.Group()
 all_obstaculos = pygame.sprite.Group()
 
+# Adicionando o jogador
 player = jogador()
-
-
 all_sprites.add(player)
 
+tick_inicial = 0 # Tick inicial (parâmetro para gerar os obstáculos)
 
-tick_inicial = 0
-
+# Loop principal do jogo
 while game:
     clock.tick(FPS)
+    # Atualiza eventos
     for event in pygame.event.get():
-
         if event.type == pygame.QUIT:
             game = False
-        
+
+        # Se o usuário apertar espaço, o jogador "pula"
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 player.speedy = 10
-    now = pygame.time.get_ticks()
-
-    if now - tick_inicial >= 4000:
+    
+    # Geração dos obstáculos
+    now = pygame.time.get_ticks() # Momento atual do jogo
+    if now - tick_inicial >= 4000: # Tempo entre o surgimento de cada par de obstáculos (4 segundos)
         obstaculo1 = obstaculo('inferior')
         obstaculo1.update()
         obstaculo2 = obstaculo('superior', obstaculo1.rect.top)
@@ -71,12 +45,12 @@ while game:
         all_obstaculos.add(obstaculo1)
         all_obstaculos.add(obstaculo2)
 
-        tick_inicial = now
+        tick_inicial = now # Atualiza a variável parâmetro
+    
+    all_sprites.update() # Roda o método uptade de cada sprite
+    all_sprites.draw(window) # Mostra as sprites na tela
 
-    all_sprites.update()
-    all_sprites.draw(window)
-
-    pygame.display.update()
+    pygame.display.update() # Atualiza a tela
     window.fill(BLACK)
 
 pygame.quit()
