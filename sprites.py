@@ -16,7 +16,7 @@ class jogador(pygame.sprite.Sprite):
         self.rect.x += self.speedx
 
         # Mantem dentro da tela
-        if self.rect.right > LARGURA:
-            self.rect.right = LARGURA
-        if self.rect.left < 0:
-            self.rect.left = 0
+        if self.rect.top < 0:
+            self.rect.top = 0
+        if self.rect.bottom > ALTURA:
+            self.rect.left = ALTURA

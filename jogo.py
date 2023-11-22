@@ -1,9 +1,9 @@
 import pygame
 from config import *
-from tela_inicial import *
-from tela_final import *
-from mapa_bolado import *
+from telas import *
+from telas import *
 from sprites import *
+from pygame.locals import *
 
 class jogo:
     def __init__(self):
@@ -19,8 +19,6 @@ class jogo:
         jogando = False
         tela_game_over = False
         fim = game_over()
-        mapa = TiledMap((0,0), pygame.sprite.Group())
-        mapa.carregar_mapa('tiled/sem título.tmx')
         while self.game:
 
             if tela_inicial:
