@@ -35,7 +35,7 @@ while game:
     
     # Geração dos obstáculos
     now = pygame.time.get_ticks() # Momento atual do jogo
-    if now - tick_inicial >= 4000: # Tempo entre o surgimento de cada par de obstáculos (4 segundos)
+    if now - tick_inicial >= 2000: # Tempo entre o surgimento de cada par de obstáculos (4 segundos)
         obstaculo1 = obstaculo('inferior')
         obstaculo1.update()
         obstaculo2 = obstaculo('superior', obstaculo1.rect.top)
@@ -46,6 +46,10 @@ while game:
         all_obstaculos.add(obstaculo2)
 
         tick_inicial = now # Atualiza a variável parâmetro
+    
+    hits = pygame.sprite.spritecollide(player, all_obstaculos, True, pygame.sprite.collide_mask)
+    if len(hits) > 0:
+        game = False
     
     all_sprites.update() # Roda o método uptade de cada sprite
     all_sprites.draw(window) # Mostra as sprites na tela

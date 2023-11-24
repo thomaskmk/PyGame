@@ -1,13 +1,14 @@
 from typing import Any
 import pygame
 import random
+from assets import *
 from config import *
 
 class jogador(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
 
-        self.image = pygame.image.load('imagem/teste.jpg').convert()
+        self.image = pygame.image.load(assets['passaro']).convert()
         self.image = pygame.transform.scale(self.image, (25,25))
         self.rect = self.image.get_rect()
         self.rect.centerx = LARGURA - 0.8*LARGURA
@@ -32,16 +33,16 @@ class obstaculo(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
 
         if position == 'inferior':
-            self.image = pygame.image.load('imagem/obstaculo.png').convert()
+            self.image = pygame.image.load(assets['obstaculo']).convert()
             self.rect = self.image.get_rect()
-            self.rect.top = random.randint(50, ALTURA-100)
+            self.rect.top = random.randint(150, ALTURA-100)
         else:
-            self.image = pygame.image.load('imagem/obstaculo.png').convert()
+            self.image = pygame.image.load(assets['obstaculo']).convert()
             self.rect = self.image.get_rect()
-            self.rect.bottom = top_obs_inferior - 50 
+            self.rect.bottom = top_obs_inferior - 150
 
-        self.rect.centerx = LARGURA
-        self.speedx = 1
+        self.rect.x = LARGURA
+        self.speedx = 2
 
     def update(self):
         self.rect.x -= self.speedx
