@@ -1,49 +1,24 @@
 import pygame
 from config import *
-from telas import *
 from sprites import *
-from pygame.locals import *
+from tela_inicial import *
+from tela_jogo import *
+from tela_game_over import*
+from assets import *
 
-class jogo:
-    def __init__(self):
-        pygame.init()
-        self.game = True
-        self.tela = pygame.display.set_mode((LARGURA, ALTURA), 0, 0)
-        self.grupo_professor = pygame.sprite.Group()
-        pygame.display.set_caption('nome do jogo')
-        self.relogio = pygame.time.Clock()
+pygame.init()
+pygame.mixer.init()
 
-    def eventos(self):
-        tela_inicial = True
-        jogando = False
-        tela_game_over = False
-        fim = game_over()
-        while self.game:
+window = pygame.display.set_mode((LARGURA, ALTURA))
+pygame.display.set_caption('sim')
 
-            if tela_inicial:
-                self.tela.fill((0, 0, 0))
-                Inicio = inicio()
-                Inicio.desenha(self.tela)
+state = INIT
+while state != QUIT:
+    if state == INIT:
+        state = tela_inicial(window)
+    if state == GAME:
+        state = tela_jogo(window)
+    if state == GAME_OVER:
+        state = tela_game_over(window)
 
-                for event in pygame.event.get():
-                    if event.type == pygame.QUIT:
-                        self.game = False
-                    if event.type == pygame.KEYDOWN:
-                        if event.key == pygame.K_t:
-                            tela_inicial = False
-                            tela_game_over = True
-
-            elif tela_game_over:
-                fim.desenha(self.tela)
-                for event in pygame.event.get():
-                    if event.type == pygame.QUIT:
-                        self.game = False
-
-            self.relogio.tick(FPS)
-            pygame.display.update()
-
-        return True
-
-jogo = jogo()
-jogo.eventos()
 pygame.quit()

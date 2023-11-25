@@ -1,10 +1,16 @@
 import pygame
+from os import path
 from pygame.locals import *
 
 # Dados gerais do jogo.
 LARGURA = 400  # Largura da tela
 ALTURA = 700 # Altura da tela
 FPS = 60 # Frames por segundo
+
+INIT = 0
+GAME = 1
+GAME_OVER = 2
+QUIT = 3
 
 # Dados gerais do chao:
 LARG_CHAO = 2*LARGURA

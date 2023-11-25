@@ -8,7 +8,7 @@ class Bird(pygame.sprite.Sprite):
 
         self.speed = VELOCIDADE
 
-        self.image = pygame.image.load('assets/bluebird-downflap.png').convert_alpha()
+        self.image = pygame.image.load('assets/imagem/bluebird-downflap.png').convert_alpha()
         self.mask = pygame.mask.from_surface(self.image)
 
         self.rect = self.image.get_rect()
@@ -29,7 +29,7 @@ class Chao(pygame.sprite.Sprite):
     def __init__(self, x):
         pygame.sprite.Sprite.__init__(self)
 
-        self.image = pygame.image.load('assets/base.png').convert_alpha()
+        self.image = pygame.image.load('assets/imagem/base.png').convert_alpha()
         self.image = pygame.transform.scale(self.image, (LARG_CHAO, ALT_CHAO))
 
         self.rect = self.image.get_rect()
@@ -94,4 +94,4 @@ while True:
         break
  
     pygame.display.update()
-pygame.quit()
+pygame.quit()  
