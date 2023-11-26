@@ -25,6 +25,7 @@ def tela_jogo(window):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 game = False
+                state = QUIT
                 
             # Se o usuário apertar espaço, o jogador "pula"
             if event.type == pygame.KEYDOWN:
@@ -50,7 +51,7 @@ def tela_jogo(window):
         for obs in all_obstaculos:
             if obs.rect.x < - 100:
                 obs.kill()
-            if obs.rect.x+ 80 == player.rect.x:
+            if obs.rect.x+ 80 == player.rect.centerx:
                 score += 0.5
         
         hits = pygame.sprite.spritecollide(player, all_obstaculos, True, pygame.sprite.collide_mask)

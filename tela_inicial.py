@@ -19,7 +19,6 @@ def tela_inicial(window):
                 if event.key == pygame.K_SPACE:
                     state = GAME
                     running = False
-        
         window.fill(BLACK)
         window.blit(bg, bg_rect)
 
