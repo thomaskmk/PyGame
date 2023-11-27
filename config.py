@@ -16,6 +16,11 @@ QUIT = 3
 LARG_CHAO = 2*LARGURA
 ALT_CHAO = 100
 
+# Dados gerais do cano:
+LARG_CANO = 80
+ALT_CANO = 500
+ESPACO_CANOS = 200
+
 # Define algumas variáveis com as cores básicas
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
@@ -28,6 +33,6 @@ YELLOW = (255, 255, 0)
 BACKGROUND_DAY = pygame.image.load('assets/imagem/background-day.png')
 
 # Velocidade e gravidade
-VELOCIDADE = 8
+VELOCIDADE = 10
 GRAVIDADE = 1
 VEL_JOGO = 10
