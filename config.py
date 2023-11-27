@@ -1,10 +1,16 @@
 import pygame
+from os import path
 from pygame.locals import *
 
 # Dados gerais do jogo.
 LARGURA = 400  # Largura da tela
-ALTURA = 800 # Altura da tela
-FPS = 30 # Frames por segundo
+ALTURA = 700 # Altura da tela
+FPS = 60 # Frames por segundo
+
+INIT = 0
+GAME = 1
+GAME_OVER = 2
+QUIT = 3
 
 # Dados gerais do chao:
 LARG_CHAO = 2*LARGURA
@@ -23,6 +29,8 @@ GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)
 
+# Define o fundo
+BACKGROUND_DAY = pygame.image.load('assets/imagem/background-day.png')
 
 # Velocidade e gravidade
 VELOCIDADE = 10
