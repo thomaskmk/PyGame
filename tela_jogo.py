@@ -26,17 +26,23 @@ def tela_jogo(window):
             if event.type == pygame.QUIT:
                 game = False
                 state = QUIT
-                
             # Se o usuário apertar espaço, o jogador "pula"
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE:
+                if event.key == pygame.K_UP:
                     player.speedy = 10
+                if event.key == pygame.K_DOWN:
+                    player.speedy = -10
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_UP:
+                    player.speedy = 0
+                if event.key == pygame.K_DOWN:
+                    player.speedy = 0
         
         all_sprites.update() # Roda o método uptade de cada sprite
         
         # Geração dos obstáculos
         now = pygame.time.get_ticks() # Momento atual do jogo
-        if now - tick_inicial >= 2000: # Tempo entre o surgimento de cada par de obstáculos (4 segundos)
+        if now - tick_inicial >= 1000: # Tempo entre o surgimento de cada par de obstáculos (4 segundos)
             obstaculo1 = obstaculo('inferior')
             obstaculo1.update()
             obstaculo2 = obstaculo('superior', obstaculo1.rect.top)
