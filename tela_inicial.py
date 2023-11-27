@@ -4,7 +4,9 @@ from config import *
 
 def tela_inicial(window):
     clock = pygame.time.Clock()
+    
     bg = pygame.image.load(assets['bg2']).convert()
+    bg = pygame.transform.scale(bg, (LARGURA, ALTURA))
     bg_rect = bg.get_rect()
     running = True
 
@@ -19,7 +21,7 @@ def tela_inicial(window):
                 if event.key == pygame.K_SPACE:
                     state = GAME
                     running = False
-        window.fill(BLACK)
         window.blit(bg, bg_rect)
+        pygame.display.update()
 
     return state

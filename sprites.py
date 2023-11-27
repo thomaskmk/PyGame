@@ -9,7 +9,7 @@ class jogador(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
 
         self.image = pygame.image.load(assets['aviao']).convert_alpha()
-        self.image = pygame.transform.scale(self.image, (50,50))
+        self.image = pygame.transform.scale(self.image, (25,25))
         self.rect = self.image.get_rect()
         self.rect.centerx = LARGURA - 0.8*LARGURA
         self.rect.bottom = 10
