@@ -1,6 +1,7 @@
 import pygame
 from config import *
 from sprites import *
+from assets import *
 
 # Iniciando dados   
 def tela_jogo(window):
@@ -10,6 +11,7 @@ def tela_jogo(window):
     # Grupos de sprites
     all_sprites = pygame.sprite.Group()
     all_obstaculos = pygame.sprite.Group()
+    all_objetos = pygame.sprite.Group()
 
     # Adicionando o jogador
     player = jogador()
@@ -52,13 +54,22 @@ def tela_jogo(window):
             all_obstaculos.add(obstaculo1)
             all_obstaculos.add(obstaculo2)
 
+            obj = objetos()
+            obj.update()
+            all_sprites.add(obj)
+            all_objetos.add(obj)
+
             tick_inicial = now # Atualiza a variável parâmetro
 
         for obs in all_obstaculos:
             if obs.rect.x < - 100:
                 obs.kill()
-            if obs.rect.x+ 80 == player.rect.centerx:
+            if obs.rect.x + 80 == player.rect.centerx:
                 score += 0.5
+
+        for kk in all_objetos:
+            if kk.rect.x < -100:
+                kk.kill()
         
         hits = pygame.sprite.spritecollide(player, all_obstaculos, True, pygame.sprite.collide_mask)
         if len(hits) > 0:
