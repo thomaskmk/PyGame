@@ -17,9 +17,14 @@ def tela_inicial(window):
             if event.type == pygame.QUIT:
                 state = QUIT
                 running = False
-            elif event.type == pygame.KEYDOWN:
-                state = GAME
-                running = False
+            if event.type == pygame.KEYDOWN:
+                if not event.key == pygame.K_ESCAPE:
+                    state = GAME
+                    running = False
+                else:
+                    state = QUIT
+                    running = False
+                    
         window.blit(bg, bg_rect)
         pygame.display.update()
 

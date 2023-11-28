@@ -17,8 +17,12 @@ def tela_game_over(window):
                 state = QUIT
                 running = False
             if event.type == pygame.KEYDOWN:
-                state = GAME
-                running = False
+                if not event.key == pygame.K_ESCAPE:
+                    state = GAME
+                    running = False
+                else:
+                    state = QUIT
+                    running = False
 
         window.fill(BLACK)
         window.blit(bg, bg_rect)
