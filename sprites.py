@@ -8,11 +8,12 @@ class jogador(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
 
         self.image = pygame.image.load(assets['aviao']).convert_alpha()
-        self.image = pygame.transform.scale(self.image, (50,30))
+        self.image = pygame.transform.scale(self.image, (100, 60))
         self.rect = self.image.get_rect()
         self.rect.centerx = LARGURA - 0.8*LARGURA
         self.rect.bottom = 10
         self.speedy = 0
+        self.mask = pygame.mask.from_surface(self.image)
     
     def update(self):
         self.rect.y -= self.speedy
@@ -28,18 +29,21 @@ class jogador(pygame.sprite.Sprite):
 class obstaculo(pygame.sprite.Sprite):
     def __init__(self, position, top_obs_inferior = None):
         pygame.sprite.Sprite.__init__(self)
+        
+        self.image = pygame.image.load(assets['obstaculo']).convert()
+        self.image = pygame.transform.scale(self.image, (LARG_CANO, ALT_CANO))
 
         if position == 'inferior':
-            self.image = pygame.image.load(assets['obstaculo']).convert()
             self.rect = self.image.get_rect()
             self.rect.top = random.randint(150, ALTURA-100)
         else:
-            self.image = pygame.image.load(assets['obstaculo']).convert()
+            self.image = pygame.transform.flip(self.image, False, True)
             self.rect = self.image.get_rect()
             self.rect.bottom = top_obs_inferior - 150
 
         self.rect.x = LARGURA
         self.speedx = 4
+        self.mask = pygame.mask.from_surface(self.image)
 
     def update(self):
         self.rect.x -= self.speedx
@@ -54,6 +58,7 @@ class objetos(pygame.sprite.Sprite):
         self.rect.top = random.randint(150, ALTURA-100)
         self.rect.x = LARGURA + 50
         self.speedx = 7
+        self.mask = pygame.mask.from_surface(self.image)
         
     def uptade(self):
         self.rect.x -= self.speedx
