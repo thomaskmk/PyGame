@@ -6,6 +6,10 @@ from assets import *
 # Iniciando dados   
 def tela_jogo(window):
     clock = pygame.time.Clock()
+
+    background = pygame.image.load(assets["background"]).convert()
+    background = pygame.transform.scale(background, (LARGURA, ALTURA))
+    background_rect = background.get_rect()
     pygame.font.init()
 
     # Grupos de sprites
@@ -55,28 +59,17 @@ def tela_jogo(window):
             all_obstaculos.add(obstaculo2)
 
             obj = objetos()
-            obj.update()
+            obj.update() 
             all_sprites.add(obj)
             all_objetos.add(obj)
 
-            tick_inicial = now # Atualiza a variável parâmetro
+            tick_inicial = now # Atualiza a variável parâmetro
 
-        for obs in all_obstaculos:
-            if obs.rect.x < - 100:
-                obs.kill()
-            if obs.rect.x + 80 == player.rect.centerx:
-                score += 0.5
-
-        for kk in all_objetos:
-            if kk.rect.x < -100:
-                kk.kill()
-        
-        hits = pygame.sprite.spritecollide(player, all_obstaculos, True, pygame.sprite.collide_mask)
-        if len(hits) > 0:
+        if pygame.sprite.spritecollide(player, all_obstaculos, False, pygame.sprite.collide_mask):
             game = False
             state = GAME_OVER
         
-        window.fill(BLACK)
+        window.blit(background, background_rect)
         all_sprites.draw(window) # Mostra as sprites na tela
 
         # Pontuação
