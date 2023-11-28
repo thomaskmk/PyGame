@@ -1,4 +1,3 @@
-from typing import Any
 import pygame
 import random
 from assets import *
@@ -43,4 +42,18 @@ class obstaculo(pygame.sprite.Sprite):
         self.speedx = 4
 
     def update(self):
+        self.rect.x -= self.speedx
+
+class objetos(pygame.sprite.Sprite):
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+
+        self.img = random.choice(assets['objetos'])
+        self.image = pygame.image.load(self.img).convert()
+        self.rect = self.image.get_rect()
+        self.rect.top = random.randint(150, ALTURA-100)
+        self.rect.x = LARGURA + 50
+        self.speedx = 7
+        
+    def uptade(self):
         self.rect.x -= self.speedx
