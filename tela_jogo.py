@@ -23,7 +23,7 @@ def tela_jogo(window):
         clock.tick(FPS)
         # Atualiza eventos
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
+            if event.type == pygame.QUIT or event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                 game = False
                 state = QUIT
             # Se o usuário apertar espaço, o jogador "pula"
