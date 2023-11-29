@@ -74,17 +74,23 @@ def tela_jogo(window):
 
         # Checando colisões
         if pygame.sprite.spritecollide(player, all_obstaculos, False, pygame.sprite.collide_mask): # Jogador x Árvores
-            pygame.mixer.Sound("assets/sons/explosao.wav").play()
+            exp = pygame.mixer.Sound("assets/sons/explosao.wav")
+            exp.play()
+            exp.set_volume(0.2)
             game = False
             state = GAME_OVER
         if pygame.sprite.spritecollide(player, all_objetos, False, pygame.sprite.collide_mask): # Jogador x Objetos voadores
-            pygame.mixer.Sound("assets/sons/explosao.wav").play()
+            exp = pygame.mixer.Sound("assets/sons/explosao.wav")
+            exp.play()
+            exp.set_volume(0.2)
             game = False
             state = GAME_OVER
 
         hits = pygame.sprite.groupcollide(all_tiros, all_objetos, True, pygame.sprite.collide_mask)
         if len(hits) > 0:
-            pygame.mixer.Sound("assets/sons/explosao.wav").play()
+            exp = pygame.mixer.Sound("assets/sons/explosao.wav")
+            exp.play()
+            exp.set_volume(0.2)
             for e in hits:
                 score += 1
 
