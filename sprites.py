@@ -44,7 +44,6 @@ class obstaculo(pygame.sprite.Sprite):
         self.rect.x = LARGURA + 200
         self.speedx = 7
 
-
     def update(self):
         self.rect.x -= self.speedx
 
@@ -54,12 +53,12 @@ class objetos(pygame.sprite.Sprite):
 
         self.image = random.choice(assets['objetos'])
         self.image = pygame.image.load(self.image).convert_alpha()
-        self.image = pygame.transform.scale(self.image,(25, 25))
+        self.image = pygame.transform.scale(self.image,(60, 60))
         self.rect = self.image.get_rect()
         self.rect.top = random.randint(150, ALTURA-100)
-        self.rect.x = 50
-        self.speedx = 7
+        self.rect.x = LARGURA + 100
+        self.speedx = 12
         self.mask = pygame.mask.from_surface(self.image)
         
-    def uptade(self):
+    def update(self):
         self.rect.x -= self.speedx
