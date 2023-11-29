@@ -15,10 +15,3 @@ assets['objetos'] = ['assets/imagem/objetos/bola8.png', 'assets/imagem/objetos/c
 assets['font'] = pygame.font.Font('assets/font/ka1.ttf', 42)
 assets["background"] = "assets/imagem/background.png"
 assets["tiros"] = "assets/imagem/tiro_laser.png"
-
-explosion_anim = []
-for i in range(9):
-    # Os arquivos de animação são numerados de 00 a 08
-    filename = os.path.join('assets/imagem/explosao', 'regularExplosion0{}.png'.format(i))
-    explosion_anim.append(filename)
-assets['exp_anim'] = explosion_anim

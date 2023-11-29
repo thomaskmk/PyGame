@@ -9,6 +9,7 @@ class jogador(pygame.sprite.Sprite):
 
         self.image = pygame.image.load(assets['aviao']).convert_alpha()
         self.image = pygame.transform.scale(self.image, (100, 60))
+        self.som = pygame.mixer.Sound("assets/sons/pew.mp3")
         self.rect = self.image.get_rect()
         self.rect.centerx = LARGURA - 0.8*LARGURA
         self.rect.bottom = 10
@@ -38,6 +39,8 @@ class jogador(pygame.sprite.Sprite):
         if tempo > self.intervalo:
             # Marca o tick da nova imagem.
             self.ultimo_tiro = now
+            pygame.mixer.music.set_volume(0.15)
+            self.som.play()
             # A nova bala vai ser criada logo acima e no centro horizontal da nave
             new_bullet = tiro(self.rect.centery)
             grupos[0].add(new_bullet) # Adiciona no grupo all_sprites

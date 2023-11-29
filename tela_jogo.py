@@ -43,6 +43,7 @@ def tela_jogo(window):
                     player.speedy += 10
                 if event.key == pygame.K_SPACE:
                     player.atira([all_sprites, all_tiros])
+
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_UP:
                     player.speedy = 0
@@ -73,16 +74,19 @@ def tela_jogo(window):
 
         # Checando colisões
         if pygame.sprite.spritecollide(player, all_obstaculos, False, pygame.sprite.collide_mask): # Jogador x Árvores
+            pygame.mixer.Sound("assets/sons/explosao.wav").play()
             game = False
             state = GAME_OVER
         if pygame.sprite.spritecollide(player, all_objetos, False, pygame.sprite.collide_mask): # Jogador x Objetos voadores
+            pygame.mixer.Sound("assets/sons/explosao.wav").play()
             game = False
             state = GAME_OVER
 
         hits = pygame.sprite.groupcollide(all_tiros, all_objetos, True, pygame.sprite.collide_mask)
-        last_score = score
-        for e in hits:
-            score += 1
+        if len(hits) > 0:
+            pygame.mixer.Sound("assets/sons/explosao.wav").play()
+            for e in hits:
+                score += 1
 
         for obs in all_obstaculos:
             if obs.rect.x <= -350:
