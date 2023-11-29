@@ -27,9 +27,9 @@ def tela_game_over(window, score):
         window.fill(BLACK)
         window.blit(bg, bg_rect)
 
-        text_surface = assets['font'].render(f'{score}', True, (255, 189, 89))
+        text_surface = assets['font'].render(f'Seu  score  foi: {score}', True, BLACK)
         text_rect = text_surface.get_rect()
-        text_rect.bottomleft = (570, 230)
+        text_rect.bottomleft = (230, 230)
         window.blit(text_surface, text_rect)
 
         pygame.display.update()
