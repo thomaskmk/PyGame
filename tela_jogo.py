@@ -77,13 +77,17 @@ def tela_jogo(window):
         if pygame.sprite.spritecollide(player, all_objetos, False, pygame.sprite.collide_mask): # Jogador x Objetos voadores
             game = False
             state = GAME_OVER
+
+        hits = pygame.sprite.groupcollide(all_tiros, all_objetos, True, pygame.sprite.collide_mask)
+            
         
         for arv in all_obstaculos:
             if arv.rect.x <= -350:
                 arv.kill()
         for ob in all_objetos:
             if ob.rect.x <= -100:
-                ob.kill()      
+                ob.kill()
+            
         all_sprites.update()   # Roda o método uptade de cada sprite
         window.fill(BLACK)
         window.blit(background, background_rect)
