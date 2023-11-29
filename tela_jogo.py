@@ -53,7 +53,7 @@ def tela_jogo(window):
             obstaculo2.update()
             obj = objetos()
             obj.update()
-            
+
             all_sprites.add(obstaculo1)
             all_sprites.add(obstaculo2)
             all_sprites.add(obj)
@@ -63,9 +63,20 @@ def tela_jogo(window):
 
             tick_inicial = now # Atualiza a variável parâmetro
 
-        if pygame.sprite.spritecollide(player, all_obstaculos, False, pygame.sprite.collide_mask):
+        # Checando colisões
+        if pygame.sprite.spritecollide(player, all_obstaculos, False, pygame.sprite.collide_mask): # Jogador x Árvores
             game = False
             state = GAME_OVER
+        if pygame.sprite.spritecollide(player, all_objetos, False, pygame.sprite.collide_mask): # Jogador x Objetos voadores
+            game = False
+            state = GAME_OVER
+        
+        for arv in all_obstaculos:
+            if arv.rect.x <= -350:
+                arv.kill()
+        for ob in all_objetos:
+            if ob.rect.x <= -100:
+                ob.kill()
         
         all_sprites.update()   # Roda o método uptade de cada sprite
         window.fill(BLACK)
