@@ -44,8 +44,6 @@ def tela_jogo(window):
                 if event.key == pygame.K_DOWN:
                     player.speedy = 0
         
-        all_sprites.update() # Roda o método uptade de cada sprite
-        
         # Geração dos obstáculos
         now = pygame.time.get_ticks() # Momento atual do jogo
         if now - tick_inicial >= 1000: # Tempo entre o surgimento de cada par de obstáculos (4 segundos)
@@ -53,14 +51,14 @@ def tela_jogo(window):
             obstaculo1.update()
             obstaculo2 = obstaculo('superior', obstaculo1.rect.top)
             obstaculo2.update()
+            obj = objetos()
+            obj.update()
+            
             all_sprites.add(obstaculo1)
             all_sprites.add(obstaculo2)
+            all_sprites.add(obj)
             all_obstaculos.add(obstaculo1)
             all_obstaculos.add(obstaculo2)
-
-            obj = objetos()
-            obj.update() 
-            all_sprites.add(obj)
             all_objetos.add(obj)
 
             tick_inicial = now # Atualiza a variável parâmetro
@@ -69,11 +67,13 @@ def tela_jogo(window):
             game = False
             state = GAME_OVER
         
+        all_sprites.update()   # Roda o método uptade de cada sprite
+        window.fill(BLACK)
         window.blit(background, background_rect)
         all_sprites.draw(window) # Mostra as sprites na tela
 
         # Pontuação
-        text_surface = assets['font'].render(f'{score:.0f}', True, WHITE)
+        text_surface = assets['font'].render(f'{score}', True, WHITE)
         text_rect = text_surface.get_rect()
         text_rect.midtop = (LARGURA/2, 10)
         window.blit(text_surface, text_rect)
