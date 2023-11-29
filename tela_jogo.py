@@ -63,7 +63,11 @@ def tela_jogo(window):
 
             tick_inicial = now # Atualiza a variável parâmetro
 
-        if pygame.sprite.spritecollide(player, all_obstaculos, False, pygame.sprite.collide_mask):
+        # Checando colisões
+        if pygame.sprite.spritecollide(player, all_obstaculos, False, pygame.sprite.collide_mask): # Jogador x Árvores
+            game = False
+            state = GAME_OVER
+        if pygame.sprite.spritecollide(player, all_objetos, False, pygame.sprite.collide_mask): # Jogador x Objetos voadores
             game = False
             state = GAME_OVER
         
