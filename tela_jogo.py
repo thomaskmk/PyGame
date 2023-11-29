@@ -87,7 +87,6 @@ def tela_jogo(window):
         for obs in all_obstaculos:
             if obs.rect.x <= -350:
                 obs.kill()
-            obs.speedx += score/60
         for ob in all_objetos:
             if ob.rect.x <= -100:
                 ob.kill()
@@ -105,4 +104,4 @@ def tela_jogo(window):
 
         pygame.display.update() # Atualiza a tela
 
-    return state
+    return state, score

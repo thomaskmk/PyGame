@@ -84,7 +84,7 @@ class objetos(pygame.sprite.Sprite):
         else:
             self.image = pygame.transform.scale(self.image,(60, 60))
         self.rect = self.image.get_rect()
-        self.rect.top = random.randint(150, 500)
+        self.rect.top = random.randint(50, 400)
         self.rect.x = LARGURA + 100
         self.speedx = 12
         self.mask = pygame.mask.from_surface(self.image)
@@ -114,6 +114,4 @@ class tiro(pygame.sprite.Sprite):
         # Se o tiro passar do inicio da tela, morre.
         if self.rect.x >= LARGURA + 200:
             self.kill()
-
-
         

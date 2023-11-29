@@ -2,7 +2,7 @@ import pygame
 from assets import *
 from config import *
 
-def tela_game_over(window):
+def tela_game_over(window, score):
     clock = pygame.time.Clock()
     bg = pygame.image.load(assets['bg1']).convert()
     bg = pygame.transform.scale(bg, (LARGURA, ALTURA))
@@ -26,6 +26,12 @@ def tela_game_over(window):
 
         window.fill(BLACK)
         window.blit(bg, bg_rect)
+
+        text_surface = assets['font'].render(f'{score}', True, (255, 189, 89))
+        text_rect = text_surface.get_rect()
+        text_rect.bottomleft = (570, 230)
+        window.blit(text_surface, text_rect)
+
         pygame.display.update()
 
     return state
