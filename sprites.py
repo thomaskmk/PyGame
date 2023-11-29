@@ -49,18 +49,19 @@ class obstaculo(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         
         if position == 'inferior':
-            self.image = pygame.image.load(assets['obstaculo']).convert_alpha()
+            self.img = assets['obstaculo'][2]
+            self.image = pygame.image.load(self.img).convert_alpha()
             self.imagem = pygame.transform.scale(self.image, (100, 400))
             self.rect = self.image.get_rect()
             self.mask = pygame.mask.from_surface(self.image)
 
-            self.rect.top = random.randint(200, ALTURA-50)
+            self.rect.bottom = random.randint(800, 1200)
         else:
             self.image = pygame.image.load(assets['nuvem']).convert_alpha()
-            self.image = pygame.transform.scale(self.image, (400, 150))
+            self.image = pygame.transform.scale(self.image, (330, 150))
             self.mask = pygame.mask.from_surface(self.image)
             self.rect = self.image.get_rect()
-            self.rect.bottom = top_obs_inferior - 150
+            self.rect.bottom = top_obs_inferior - 100
 
         self.rect.x = LARGURA + 200
         self.speedx = 7
@@ -83,17 +84,13 @@ class objetos(pygame.sprite.Sprite):
         else:
             self.image = pygame.transform.scale(self.image,(60, 60))
         self.rect = self.image.get_rect()
-        self.rect.top = random.randint(150, ALTURA-100)
+        self.rect.top = random.randint(150, 500)
         self.rect.x = LARGURA + 100
         self.speedx = 12
         self.mask = pygame.mask.from_surface(self.image)
         
     def update(self):
         self.rect.x -= self.speedx
-
-
-        #if self.img != 'assets/imagem/objetos/arrow.png' and self.img != 'assets/imagem/objetos/foguete.png':
-            #self.image = pygame.transform.rotate(self.image, 1)
 
 class tiro(pygame.sprite.Sprite):
     # Construtor da classe.

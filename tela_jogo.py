@@ -25,6 +25,7 @@ def tela_jogo(window):
     tick_inicial_obstaculos = 0 # Tick inicial (parâmetro para gerar os obstáculos)
     tick_inicial_objetos = 0 # TIck inicial (parâmetro para gerar os objetos)
     score = 0 # Inicia pontuação
+
     # Loop principal do jogo
     game = True
     while game:
@@ -79,11 +80,14 @@ def tela_jogo(window):
             state = GAME_OVER
 
         hits = pygame.sprite.groupcollide(all_tiros, all_objetos, True, pygame.sprite.collide_mask)
-            
-        
-        for arv in all_obstaculos:
-            if arv.rect.x <= -350:
-                arv.kill()
+        last_score = score
+        for e in hits:
+            score += 1
+
+        for obs in all_obstaculos:
+            if obs.rect.x <= -350:
+                obs.kill()
+            obs.speedx += score/60
         for ob in all_objetos:
             if ob.rect.x <= -100:
                 ob.kill()

@@ -12,17 +12,21 @@ pygame.mixer.init()
 window = pygame.display.set_mode((LARGURA, ALTURA))
 pygame.display.set_caption('Avião perdido')
 
-pygame.mixer.music.load('assets/sons/musica_de_fundo.mp3')
-pygame.mixer.music.set_volume(0.4)
+
 
 state = INIT
-pygame.mixer.music.play(loops=-1)
 while state != QUIT:
     if state == INIT:
+        pygame.mixer.music.load('assets/sons/musica_de_fundo.mp3')
+        pygame.mixer.music.set_volume(0.1)
+        pygame.mixer.music.play(loops=-1)
         state = tela_inicial(window)
     if state == GAME:
         state = tela_jogo(window)
     if state == GAME_OVER:
+        pygame.mixer.music.load('assets/sons/musica_game_over.mp3')
+        pygame.mixer.music.set_volume(0.1)
+        pygame.mixer.music.play(loops=-1)
         state = tela_game_over(window)
 
 pygame.quit()
