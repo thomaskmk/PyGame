@@ -17,7 +17,7 @@ class jogador(pygame.sprite.Sprite):
         self.speedy = 0
 
         self.ultimo_tiro = pygame.time.get_ticks()
-        self.intervalo = 1000
+        self.intervalo = 500
     
     def update(self):
         self.rect.y += self.speedy

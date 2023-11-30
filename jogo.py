@@ -14,8 +14,6 @@ pygame.mixer.init()
 window = pygame.display.set_mode((LARGURA, ALTURA))
 pygame.display.set_caption('Avião perdido')
 
-
-
 # Alterna os estados do jogo
 state = INIT
 while state != QUIT:
