@@ -1,6 +1,7 @@
 # PYGAME
 Projeto por: Maria Carolina Pôrto e Thomas Kassabian
 
+**AVIÃO PERDIDO**
 ## **Sobre o projeto:**
 
 Repositório criado para o desenvimento do Pygame, um jogo Arcade.
@@ -20,4 +21,5 @@ Faça o maior número de pontos com apenas uma vida e divirta-se!!
 
 
 *Para jogar, rode o arquivo jogo.py*
+
 Boa sorte e divirta-se!!
