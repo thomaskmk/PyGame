@@ -6,6 +6,7 @@ from pygame.locals import *
 LARGURA = 1000  # Largura da tela
 ALTURA = 600 # Altura da tela
 FPS = 60 # Frames por segundo
+Vy = 10 # Velocidade em y do jogador
 
 INIT = 0
 GAME = 1
